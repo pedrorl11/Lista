@@ -10,12 +10,15 @@
         android:id="@+id/imvPhotopreview"
         android:layout_width="321dp"
         android:layout_height="300dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="22dp"
         app:layout_constraintBottom_toTopOf="@+id/imBCI"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageButton
@@ -23,8 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_gallery"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="312dp" />
 
     <EditText
         android:id="@+id/etTitle"
@@ -33,8 +36,8 @@
         android:ems="10"
         android:hint="Titulo"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="389dp" />
+        tools:layout_editor_absoluteX="334dp"
+        tools:layout_editor_absoluteY="5dp" />
 
     <EditText
         android:id="@+id/etDesc"
@@ -44,13 +47,13 @@
         android:gravity="top"
         android:hint="Descrição"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="447dp" />
+        tools:layout_editor_absoluteX="334dp"
+        tools:layout_editor_absoluteY="71dp" />
 
     <Button
         android:id="@+id/btnAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="700dp"
+        android:layout_height="50dp"
         android:insetTop="8dp"
         android:text="ADICIONAR ITEM"
         app:layout_constraintBottom_toBottomOf="parent"
