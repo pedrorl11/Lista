@@ -1,4 +1,4 @@
-package soares.pedro.Galeria;
+package soares.pedro.lista;
 
 import android.content.Context;
 

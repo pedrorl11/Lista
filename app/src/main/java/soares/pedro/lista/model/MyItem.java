@@ -1,4 +1,4 @@
-package soares.pedro.Galeria.model;
+package soares.pedro.lista.model;
 
 import android.net.Uri;
 

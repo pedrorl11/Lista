@@ -1,4 +1,4 @@
-package soares.pedro.Galeria.activiti;
+package soares.pedro.lista.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -15,8 +15,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import soares.pedro.Galeria.activity.adapter.MyAdapter;
-import soares.pedro.Galeria.model.MyItem;
+import soares.pedro.lista.adapter.MyAdapter;
+import soares.pedro.lista.model.MyItem;
 import soares.pedro.lista.R;
 
 public class MainActivity extends AppCompatActivity {

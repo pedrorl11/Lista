@@ -1,4 +1,4 @@
-package soares.pedro.Galeria.activiti;
+package soares.pedro.lista.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

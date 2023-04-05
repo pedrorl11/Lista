@@ -4,56 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="soares.pedro.Galeria.activiti.NewItemActivity">
+    tools:context="soares.pedro.lista.activity.NewItemActivity">
 
     <ImageView
         android:id="@+id/imvPhotopreview"
-        android:layout_width="321dp"
-        android:layout_height="300dp"
+        android:layout_width="173dp"
+        android:layout_height="175dp"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="22dp"
-        app:layout_constraintBottom_toTopOf="@+id/imBCI"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageButton
         android:id="@+id/imBCI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_gallery"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="325dp" />
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imvPhotopreview"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="355dp"
         android:layout_height="45dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="26dp"
         android:ems="10"
         android:hint="Titulo"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="389dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imBCI" />
 
     <EditText
         android:id="@+id/etDesc"
         android:layout_width="355dp"
         android:layout_height="234dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="26dp"
         android:ems="10"
         android:gravity="top"
         android:hint="Descrição"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="447dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
     <Button
         android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:insetTop="8dp"
         android:text="ADICIONAR ITEM"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDesc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
