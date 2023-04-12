@@ -28,15 +28,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
          super.onActivityResult(requestCode, resultCode, data);
-         if(requestCode == NEW_ITEM_REQUEST) {
-             if(resultCode == Activity.RESULT_OK) {
+         if(requestCode == NEW_ITEM_REQUEST) {//verifico se o resultado corresponde a new item request
+             if(resultCode == Activity.RESULT_OK) {//verifico se a tela de destino retornou sem erros
 
-                 MyItem myItem = new MyItem();
-                 myItem.title = data.getStringExtra("title");
-                 myItem.description = data.getStringExtra("description");
-                 myItem.photo = data.getData();
-                 itens.add(myItem);
-                 myAdapter.notifyItemInserted(itens.size()-1);
+                 MyItem myItem = new MyItem();//crio um item
+                 myItem.title = data.getStringExtra("title");//atribuo o titulo retornado pelo usuario para o item
+                 myItem.description = data.getStringExtra("description");//atribuo a descricao retornada pelo usuario para o item
+                 myItem.photo = data.getData();//atribuo a foto retornada pelo usuario para o item
+                 itens.add(myItem); // adiciono o item na array de itens
+                 myAdapter.notifyItemInserted(itens.size()-1);//aviso o adapter que um item foi criado para atualizar o recyclerview
                  }
              }
          }
@@ -46,24 +46,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rvItens = findViewById(R.id.rvItens);
-        myAdapter = new MyAdapter(this,itens);
-        rvItens.setAdapter(myAdapter);
+        RecyclerView rvItens = findViewById(R.id.rvItens);// pego o recyclervview
+        myAdapter = new MyAdapter(this,itens); // crio o myadapter
+        rvItens.setAdapter(myAdapter); //seto o adapter no recyclerview
 
-        rvItens.setHasFixedSize(true);
+        rvItens.setHasFixedSize(true);//indico que nao ha variacao de tamanho entre itens
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvItens.setLayoutManager(layoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);//mostra a lista de forma linear e vertical
+        rvItens.setLayoutManager(layoutManager); // passo esse layout para o recyclerview
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvItens.getContext(), DividerItemDecoration.VERTICAL);
-        rvItens.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvItens.getContext(), DividerItemDecoration.VERTICAL);//crio uma linha divisoria entre itens
+        rvItens.addItemDecoration(dividerItemDecoration);//seto a configuraçao para o recyclerview
 
-        FloatingActionButton fabAddItem = findViewById(R.id.fabAddNewItem);
-        fabAddItem.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fabAddItem = findViewById(R.id.fabAddNewItem);//pego o botao
+        fabAddItem.setOnClickListener(new View.OnClickListener() {//crio uma acao para o botao ao ser clicado
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, NewItemActivity.class);
-                startActivityForResult(i, NEW_ITEM_REQUEST);
+                Intent i = new Intent(MainActivity.this, NewItemActivity.class);//crio um intent explicito
+                startActivityForResult(i, NEW_ITEM_REQUEST);//uso o metodo da intent dizendo que a tela new_item ira retornar valores
             }
         });
     }
