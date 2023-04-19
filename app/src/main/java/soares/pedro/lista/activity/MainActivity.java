@@ -1,29 +1,35 @@
 package soares.pedro.lista.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import soares.pedro.lista.adapter.MyAdapter;
+import soares.pedro.lista.model.MainActivityViewModel;
 import soares.pedro.lista.model.MyItem;
 import soares.pedro.lista.R;
+import soares.pedro.lista.model.Util;
 
 public class MainActivity extends AppCompatActivity {
 
     MyAdapter myAdapter;
     static int NEW_ITEM_REQUEST = 1;
-    List<MyItem> itens = new ArrayList<>();
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -34,7 +40,18 @@ public class MainActivity extends AppCompatActivity {
                  MyItem myItem = new MyItem();//crio um item
                  myItem.title = data.getStringExtra("title");//atribuo o titulo retornado pelo usuario para o item
                  myItem.description = data.getStringExtra("description");//atribuo a descricao retornada pelo usuario para o item
-                 myItem.photo = data.getData();//atribuo a foto retornada pelo usuario para o item
+                 Uri selectedPhotoURI = data.getData(); //atribuo a foto retornada pelo usuario para o item
+
+                 try{
+                     Bitmap photo = Util.getBitmap(MainActivity.this, selectedPhotoURI, 100, 100);
+                     myItem.photo = photo;
+                 }catch (FileNotFoundException e){
+                     e.printStackTrace();
+                 }
+
+                 MainActivityViewModel vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
+                 List<MyItem> itens = vm.getItens();
+
                  itens.add(myItem); // adiciono o item na array de itens
                  myAdapter.notifyItemInserted(itens.size()-1);//aviso o adapter que um item foi criado para atualizar o recyclerview
                  }
@@ -47,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView rvItens = findViewById(R.id.rvItens);// pego o recyclervview
+        MainActivityViewModel vm = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        List<MyItem> itens = vm.getItens();
+
         myAdapter = new MyAdapter(this,itens); // crio o myadapter
         rvItens.setAdapter(myAdapter); //seto o adapter no recyclerview
 

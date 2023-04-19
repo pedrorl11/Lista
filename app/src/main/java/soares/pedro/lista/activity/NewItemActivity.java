@@ -2,6 +2,7 @@ package soares.pedro.lista.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,16 +16,24 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import soares.pedro.lista.R;
+import soares.pedro.lista.model.NewItemActivityViewModel;
 
 public class NewItemActivity extends AppCompatActivity {
 
     static int PHOTO_PICKER_REQUEST = 1;
-    Uri photoSelected = null;//pego apenas o endereco da imagem no celular
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
+
+        NewItemActivityViewModel vm = new ViewModelProvider( this ).get(NewItemActivityViewModel.class );
+
+        Uri selectPhotoLocation = vm.getSelectPhotoLocation();
+        if(selectPhotoLocation != null) {
+            ImageView imvfotoPreview = findViewById(R.id.imvPhotopreview);
+            imvfotoPreview.setImageURI(selectPhotoLocation);
+            }
 
         Button btnAdditem = findViewById(R.id.btnAddItem);//recebo o o botao de acrescentar item
         btnAdditem.setOnClickListener(new View.OnClickListener(){
@@ -72,9 +81,13 @@ public class NewItemActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PHOTO_PICKER_REQUEST){ //verificamos se a chamada de startactivityForresult é a do photo_picker
             if(resultCode == Activity.RESULT_OK){ //verificamos se a tela retornou corretamente
-                photoSelected = data.getData(); //pegamos o resultado
-                ImageView imvfotoPreview = findViewById(R.id.imvPhotopreview); // pegamos o preview do item
-                imvfotoPreview.setImageURI(photoSelected); //exibimos a foto no preview do item através da uri
+
+                Uri photoSelected = data.getData();
+                ImageView imvfotoPreview = findViewById( R.id.imvPhotopreview);
+                imvfotoPreview.setImageURI(photoSelected);
+
+                NewItemActivityViewModel vm = new ViewModelProvider( this).get( NewItemActivityViewModel.class );
+                vm.setSelectPhotoLocation(photoSelected);
             }
         }
     }
