@@ -33,12 +33,15 @@ public class NewItemActivity extends AppCompatActivity {
         if(selectPhotoLocation != null) {
             ImageView imvfotoPreview = findViewById(R.id.imvPhotopreview);
             imvfotoPreview.setImageURI(selectPhotoLocation);
-            }
+        }
 
         Button btnAdditem = findViewById(R.id.btnAddItem);//recebo o o botao de acrescentar item
         btnAdditem.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) { //crio uma acao pro botao
+
+                Uri photoSelected = vm.getSelectPhotoLocation();
+
                 if(photoSelected == null){ //verifico se a imagem foi selecionada
                     Toast.makeText(NewItemActivity.this, "É necssário selecionar uma imagem!", Toast.LENGTH_LONG).show();
                     return;//caso esteja vazia, dou um aviso
